@@ -1,86 +1,28 @@
 [gd_scene format=3 uid="uid://cp2vhfdrfhcow"]
 
-[ext_resource type="Texture2D" uid="uid://b61hhre5syban" path="res://Assets/casa.kra-autosave.png" id="1_r5tn8"]
+[ext_resource type="Texture2D" uid="uid://cx0f8vebctipy" path="res://Assets/game/background.png" id="1_r2671"]
 [ext_resource type="Script" uid="uid://ddx2ymhuoi672" path="res://Scenes/player.gd" id="2_f41gw"]
 [ext_resource type="Script" uid="uid://cmcc0bnxfywtq" path="res://Scenes/camera_2d.gd" id="2_y6p77"]
-[ext_resource type="Texture2D" uid="uid://cog66bbfkw6b1" path="res://Assets/2.png" id="4_53mpi"]
 [ext_resource type="Script" uid="uid://c2vchwgovf4de" path="res://Scenes/techo.gd" id="4_k3h06"]
-[ext_resource type="Texture2D" uid="uid://cshdx53w1sb87" path="res://Assets/a.png" id="5_2r1nu"]
-[ext_resource type="Texture2D" uid="uid://b6cdbvfbwn53m" path="res://Assets/3.png" id="5_whgob"]
-[ext_resource type="Texture2D" uid="uid://b1q5dg2vi4cto" path="res://Assets/1.png" id="6_2r1nu"]
-[ext_resource type="Texture2D" uid="uid://56p62h2oo6ox" path="res://Assets/a1.png" id="8_k0wah"]
-[ext_resource type="Texture2D" uid="uid://diaqxhoeplycx" path="res://Assets/a2.png" id="9_r2671"]
-[ext_resource type="Texture2D" uid="uid://bgs6i31t1mciu" path="res://Assets/a3.png" id="10_2bgf5"]
+[ext_resource type="SpriteFrames" uid="uid://bx1m84xpf7ghd" path="res://Scenes/cats/white.tres" id="4_njktm"]
+[ext_resource type="SpriteFrames" uid="uid://bfw268c0espm0" path="res://Scenes/cats/blaqui.tres" id="5_53mpi"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k3h06"]
-height = 135.0
+height = 70.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_whgob"]
 radius = 35.0
-height = 138.0
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_rage8"]
-animations = [{
-"frames": [{
-"duration": 5.0,
-"texture": ExtResource("6_2r1nu")
-}, {
-"duration": 15.0,
-"texture": ExtResource("5_2r1nu")
-}],
-"loop": false,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_2r1nu")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_53mpi")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_whgob")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 5.0
-}]
+height = 100.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y6p77"]
-height = 135.0
+height = 70.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2r1nu"]
 radius = 35.0
-height = 135.0
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_2r1nu"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("8_k0wah")
-}],
-"loop": false,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("8_k0wah")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_r2671")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_2bgf5")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 5.0
-}]
+height = 100.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r5tn8"]
-size = Vector2(2513, 370)
+size = Vector2(241, 353)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y6p77"]
 size = Vector2(230, 60)
@@ -98,35 +40,27 @@ size = Vector2(230, 165)
 [node name="Node2D" type="Node2D" unique_id=598080482]
 
 [node name="Casa_kraAutosave2" type="TextureRect" parent="." unique_id=1126500282]
-offset_left = -159.0
-offset_top = -2554.0
-offset_right = 2049.0
-offset_bottom = 1352.5625
-texture = ExtResource("1_r5tn8")
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=364704204]
-offset_left = -1329.0
-offset_top = -13.0
-offset_right = 3109.0
-offset_bottom = 1936.0
-color = Color(0.02745098, 0.05490196, 0.11764706, 1)
-
-[node name="Casa_kraAutosave" type="TextureRect" parent="." unique_id=1098327560]
-offset_top = -2165.0
-offset_right = 1920.0
-offset_bottom = 1075.0
-texture = ExtResource("1_r5tn8")
+offset_left = -1845.0
+offset_top = -2131.0
+offset_right = 3774.0
+offset_bottom = 998.0
+texture = ExtResource("1_r2671")
+expand_mode = 3
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1662665608 node_paths=PackedStringArray("player_1", "player_2")]
 position = Vector2(960, 526)
 zoom = Vector2(0.5, 0.5)
-limit_left = -100
-limit_top = -1200
-limit_right = 2020
-limit_bottom = 1080
+limit_left = -429
+limit_top = -1384
+limit_right = 2103
+limit_bottom = 998
 script = ExtResource("2_y6p77")
 player_1 = NodePath("../CharacterBody2D")
 player_2 = NodePath("../CharacterBody2D2")
+min_zoom = 0.3
+max_zoom = 1.0
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=940354045]
 position = Vector2(392, 592)
@@ -135,20 +69,20 @@ collision_mask = 3
 script = ExtResource("2_f41gw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1016755676]
-position = Vector2(4, 14)
+position = Vector2(1, 15)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_k3h06")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D" unique_id=644800376]
-position = Vector2(4, -13)
+position = Vector2(1, -15)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_whgob")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=397159643]
-position = Vector2(8, -45)
+position = Vector2(3, -13)
 scale = Vector2(0.5, 0.5)
-sprite_frames = SubResource("SpriteFrames_rage8")
-animation = &"idle"
+sprite_frames = ExtResource("4_njktm")
+animation = &"walk_up_left"
 
 [node name="CharacterBody2D2" type="CharacterBody2D" parent="." unique_id=897108905]
 position = Vector2(707, 596)
@@ -163,23 +97,22 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_y6p77")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D2" unique_id=2006684600]
-position = Vector2(19, -22)
+position = Vector2(21, -31)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_2r1nu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D2" unique_id=1459927747]
-position = Vector2(25, -54)
+position = Vector2(23, -25)
 scale = Vector2(0.5, 0.5)
-sprite_frames = SubResource("SpriteFrames_2r1nu")
-animation = &"walk"
-autoplay = "walk"
-frame_progress = 0.7184807
+sprite_frames = ExtResource("5_53mpi")
+animation = &"andry"
+frame_progress = 0.9647763
 
 [node name="RigidBody2D" type="StaticBody2D" parent="." unique_id=727848951]
 position = Vector2(0, 723)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=1522455438]
-position = Vector2(972.5, 175)
+position = Vector2(-100.5, 183.5)
 shape = SubResource("RectangleShape2D_r5tn8")
 
 [node name="Tejas" type="Area2D" parent="." unique_id=335539147]

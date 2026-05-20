@@ -32,6 +32,8 @@ var input_jump: String
 var input_dash: String
 var input_attack: String
 
+var last_idle_dir: String = "right" # Guarda la última dirección para el Idle de 4 posiciones
+
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
@@ -70,6 +72,9 @@ func _physics_process(delta: float) -> void:
 	_update_animations() # <-- Lógica de animación centralizada
 
 func _update_animations() -> void:
+	# Anulamos el flip_h del movimiento para no distorsionar tus nuevos sprites direccionales
+	animated_sprite_2d.flip_h = false 
+
 	# 1. Prioridad máxima: Acciones que bloquean otras animaciones
 	if is_attacking:
 		# animated_sprite_2d.play("attack")
@@ -79,23 +84,48 @@ func _update_animations() -> void:
 		# animated_sprite_2d.play("dash")
 		return
 
-	# 2. Prioridad media: Escalada
+	# Actualizamos la memoria del IDLE (4 posiciones) basándonos en la velocidad actual
+	if velocity != Vector2.ZERO:
+		if abs(velocity.x) > abs(velocity.y):
+			last_idle_dir = "right" if velocity.x > 0 else "left"
+		elif abs(velocity.y) > abs(velocity.x):
+			last_idle_dir = "down" if velocity.y > 0 else "up"
+
+	# 2. Prioridad media: Escalada (8 Direcciones)
 	if is_climbing:
 		if velocity != Vector2.ZERO:
-			animated_sprite_2d.play("walk") # Aquí luego puedes poner un "climb"
+			# Llama a la función que arma el nombre (ej. "walk_up_left")
+			animated_sprite_2d.play("walk_" + _get_8way_direction(velocity))
 		else:
-			animated_sprite_2d.play("idle") # O un "climb_idle"
+			animated_sprite_2d.play("idle_" + last_idle_dir)
 		return
 
-	# 3. Prioridad estándar: Suelo y Aire
+	# 3. Prioridad estándar: Suelo (Solo Izquierda/Derecha) y Aire
 	if is_on_floor():
 		if velocity.x == 0:
-			animated_sprite_2d.play("idle")
+			animated_sprite_2d.play("idle_" + last_idle_dir)
 		else:
-			animated_sprite_2d.play("walk")
+			var dir = "right" if velocity.x > 0 else "left"
+			animated_sprite_2d.play("walk_" + dir)
 	else:
 		pass
 		# animated_sprite_2d.play("jump") # Cuando estés en el aire
+
+# Función auxiliar que detecta las 8 direcciones según el vector de velocidad
+func _get_8way_direction(vel: Vector2) -> String:
+	var dir := ""
+	
+	if vel.y < 0:
+		dir += "up"
+	elif vel.y > 0:
+		dir += "down"
+		
+	if vel.x < 0:
+		dir += ("_left" if dir != "" else "left")
+	elif vel.x > 0:
+		dir += ("_right" if dir != "" else "right")
+		
+	return dir
 
 func _check_climb_entry() -> void:
 	if climbable_areas_count > 0 and not is_climbing:

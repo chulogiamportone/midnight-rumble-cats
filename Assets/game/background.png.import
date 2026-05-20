@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvslxa60o1u4o"
-path="res://.godot/imported/RoofingTiles014A_1K-PNG_NormalDX.png-902a00fdd8b28b434384882ebe0f16a8.ctex"
+uid="uid://cx0f8vebctipy"
+path="res://.godot/imported/background.png-6d004cbc2b23bde987ec7b56f7ff6b20.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/RoofingTiles014A_1K-PNG/RoofingTiles014A_1K-PNG_NormalDX.png"
-dest_files=["res://.godot/imported/RoofingTiles014A_1K-PNG_NormalDX.png-902a00fdd8b28b434384882ebe0f16a8.ctex"]
+source_file="res://Assets/game/background.png"
+dest_files=["res://.godot/imported/background.png-6d004cbc2b23bde987ec7b56f7ff6b20.ctex"]
 
 [params]
 
