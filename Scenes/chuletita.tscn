@@ -5,14 +5,17 @@
 [ext_resource type="Script" uid="uid://ddx2ymhuoi672" path="res://Scenes/player.gd" id="2_f41gw"]
 [ext_resource type="Script" uid="uid://cmcc0bnxfywtq" path="res://Scenes/camera_2d.gd" id="2_y6p77"]
 [ext_resource type="Script" uid="uid://c2vchwgovf4de" path="res://Scenes/techo.gd" id="4_k3h06"]
-[ext_resource type="SpriteFrames" uid="uid://bx1m84xpf7ghd" path="res://Scenes/cats/white.tres" id="4_njktm"]
+[ext_resource type="SpriteFrames" uid="uid://bx1m84xpf7ghd" path="res://Scenes/cats/orange.tres" id="4_njktm"]
 [ext_resource type="FontFile" uid="uid://cn1pduy0hqljw" path="res://Assets/fonts/beatstreet.ttf" id="4_rage8"]
 [ext_resource type="SpriteFrames" uid="uid://bfw268c0espm0" path="res://Scenes/cats/blaqui.tres" id="5_53mpi"]
+[ext_resource type="Script" uid="uid://p5h3e3fs7uh5" path="res://Scenes/UI_key.gd" id="5_lc054"]
 [ext_resource type="Texture2D" uid="uid://dd5llfgixf13c" path="res://Assets/game/cat 1.6 16x16 animation.png" id="6_2bgf5"]
+[ext_resource type="SpriteFrames" uid="uid://cv36kikpnxkkd" path="res://Scenes/cats/key_animation.tres" id="6_5qvwh"]
 [ext_resource type="SpriteFrames" uid="uid://cxib3g8ej76gj" path="res://Scenes/cats/fight.tres" id="7_53mpi"]
 [ext_resource type="Texture2D" uid="uid://oq12drfnkjp1" path="res://Assets/game/cat 1 16x16 animation.png" id="8_2r1nu"]
-[ext_resource type="PackedScene" uid="uid://sgdu73xdki7h" path="res://Scenes/UI_key.tscn" id="8_whgob"]
+[ext_resource type="Texture2D" uid="uid://dnjh6xu88x0nk" path="res://Assets/game/dead_o.png" id="10_nigha"]
 [ext_resource type="Script" uid="uid://dl2vxrqc286tm" path="res://Scenes/respawn_area.gd" id="11_k0wah"]
+[ext_resource type="Texture2D" uid="uid://bhjhl3ywj40tb" path="res://Assets/game/dead_n.png" id="11_lggby"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r5tn8"]
 size = Vector2(241, 353)
@@ -29,6 +32,67 @@ height = 230.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_whgob"]
 size = Vector2(230, 165)
+
+[sub_resource type="Animation" id="Animation_vito0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D/Label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D/Label:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vht0l"]
+resource_name = "new_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D/Label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 5.6568522, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D/Label:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.033333335, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.45, 0.45), Vector2(0.55, 0.55), Vector2(0.45, 0.45)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f2ggp"]
+_data = {
+&"RESET": SubResource("Animation_vito0"),
+&"new_animation": SubResource("Animation_vht0l")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lggby"]
 atlas = ExtResource("6_2bgf5")
@@ -459,11 +523,37 @@ theme_override_font_sizes/font_size = 60
 text = "7"
 vertical_alignment = 1
 
-[node name="UI_keyP1" parent="UI" unique_id=1912203776 instance=ExtResource("8_whgob")]
+[node name="UI_keyP1" type="Control" parent="UI" unique_id=1912203776]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
 offset_left = -710.0
 offset_top = 600.0
 offset_right = -710.0
 offset_bottom = 600.0
+grow_horizontal = 2
+script = ExtResource("5_lc054")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="UI/UI_keyP1" unique_id=1123281064]
+position = Vector2(0, 200)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("6_5qvwh")
+animation = &"key_up"
+
+[node name="Label" type="Label" parent="UI/UI_keyP1/AnimatedSprite2D" unique_id=1987187973]
+offset_left = -97.499985
+offset_top = 20.0
+offset_right = 102.500015
+offset_bottom = 119.99999
+pivot_offset = Vector2(100, 45)
+theme_override_fonts/font = ExtResource("4_rage8")
+theme_override_font_sizes/font_size = 70
+text = "Attack!!!"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/UI_keyP1" unique_id=1450461538]
+libraries/ = SubResource("AnimationLibrary_f2ggp")
+autoplay = &"new_animation"
 
 [node name="Bar1" type="ProgressBar" parent="UI" unique_id=1994999171]
 offset_left = 300.0
@@ -500,11 +590,37 @@ text = "7"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="UI_keyP2" parent="UI" unique_id=1831389668 instance=ExtResource("8_whgob")]
+[node name="UI_keyP2" type="Control" parent="UI" unique_id=1831389668]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
 offset_left = 710.0
 offset_top = 600.0
 offset_right = 710.0
 offset_bottom = 600.0
+grow_horizontal = 2
+script = ExtResource("5_lc054")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="UI/UI_keyP2" unique_id=102759272]
+position = Vector2(0, 200)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("6_5qvwh")
+animation = &"key_vertical"
+
+[node name="Label" type="Label" parent="UI/UI_keyP2/AnimatedSprite2D" unique_id=295765711]
+offset_left = -97.499985
+offset_top = 20.0
+offset_right = 102.500015
+offset_bottom = 119.99999
+pivot_offset = Vector2(100, 45)
+theme_override_fonts/font = ExtResource("4_rage8")
+theme_override_font_sizes/font_size = 70
+text = "Attack!!!"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/UI_keyP2" unique_id=2118687271]
+libraries/ = SubResource("AnimationLibrary_f2ggp")
+autoplay = &"new_animation"
 
 [node name="Bar2" type="ProgressBar" parent="UI" unique_id=1884050963]
 offset_left = 1220.0
@@ -542,7 +658,7 @@ vertical_alignment = 1
 [node name="Players" type="Node2D" parent="." unique_id=977354285]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="Players" unique_id=940354045 groups=["players"]]
-position = Vector2(392, 592)
+position = Vector2(528, 508)
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("2_f41gw")
@@ -556,7 +672,7 @@ shape = SubResource("CapsuleShape2D_whgob")
 position = Vector2(3, -13)
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("4_njktm")
-animation = &"walk_right"
+animation = &"dead"
 
 [node name="FightTriggerArea" type="Area2D" parent="Players/CharacterBody2D" unique_id=1830907144]
 
@@ -565,8 +681,15 @@ position = Vector2(3, -17)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_k0wah")
 
+[node name="Dead" type="Sprite2D" parent="Players/CharacterBody2D" unique_id=1182727653]
+visible = false
+modulate = Color(1, 1, 1, 0.39215687)
+position = Vector2(-1.999999, -10.999996)
+scale = Vector2(0.4492041, 0.4492041)
+texture = ExtResource("10_nigha")
+
 [node name="CharacterBody2D2" type="CharacterBody2D" parent="Players" unique_id=897108905 groups=["players"]]
-position = Vector2(1243, 266)
+position = Vector2(1363, 518)
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("2_f41gw")
@@ -581,8 +704,8 @@ shape = SubResource("CapsuleShape2D_2r1nu")
 position = Vector2(23, -25)
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("5_53mpi")
-animation = &"andry"
-frame_progress = 0.6558867
+animation = &"dead"
+frame_progress = 0.4330573
 
 [node name="FightTriggerArea" type="Area2D" parent="Players/CharacterBody2D2" unique_id=1607691314]
 
@@ -590,6 +713,13 @@ frame_progress = 0.6558867
 position = Vector2(22, -27)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_r2671")
+
+[node name="Dead" type="Sprite2D" parent="Players/CharacterBody2D2" unique_id=1998126408]
+visible = false
+modulate = Color(1, 1, 1, 0.39215687)
+position = Vector2(16.999947, -18.999998)
+scale = Vector2(0.44633988, 0.43303576)
+texture = ExtResource("11_lggby")
 
 [node name="Respawn" type="Node2D" parent="." unique_id=1850856722]
 
@@ -650,7 +780,5 @@ animation = &"fight"
 [connection signal="body_entered" from="Build/Tanque" to="Build/Tanque" method="_on_body_entered"]
 [connection signal="body_exited" from="Build/Tanque" to="Build/Tanque" method="_on_body_exited"]
 [connection signal="body_entered" from="Players/CharacterBody2D/FightTriggerArea" to="Players/CharacterBody2D" method="_on_fight_trigger_area_body_entered"]
+[connection signal="body_entered" from="Players/CharacterBody2D2/FightTriggerArea" to="Players/CharacterBody2D2" method="_on_fight_trigger_area_body_entered"]
 [connection signal="body_entered" from="Respawn/RespawnArea" to="Respawn/RespawnArea" method="_on_body_entered"]
-
-[editable path="UI/UI_keyP1"]
-[editable path="UI/UI_keyP2"]

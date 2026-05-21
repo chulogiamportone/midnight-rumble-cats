@@ -5,6 +5,7 @@ signal health_updated(player_id: int, current_health: int, max_health: int) # <-
 signal qte_started(player_id: int, action_name: String)
 signal qte_ended()
 signal lives_updated(player_id: int, current_lives: int) 
+@onready var dead: Sprite2D = $"Dead"
 
 @export var player_id: int = 1
 
@@ -277,11 +278,16 @@ func receive_qte_hit() -> void:
 			emit_signal("health_updated", player_id, current_health, max_health)
 			_end_fight_sequence(false)
 		else:
-			# Si morí definitivamente
+			# --- SI MORÍ DEFINITIVAMENTE ---
 			emit_signal("qte_ended")
 			if fight_effect_sprite and fight_effect_sprite.visible:
 				fight_effect_sprite.visible = false
 				fight_effect_sprite.stop()
+				
+			# Aseguramos que el jugador y el oponente vuelvan a ser visibles
+			self.visible = true
+			if is_instance_valid(current_opponent):
+				current_opponent.visible = true
 
 func win_fight() -> void:
 	print("¡Jugador ", player_id, " gana el choque!")
@@ -343,7 +349,27 @@ func lose_life(amount: int) -> void:
 
 func die() -> void:
 	print("Jugador ", player_id, " eliminado por completo")
-	queue_free() 
+	
+	# Desactivamos el movimiento y marcamos que ya no está en pelea
+	can_move = false
+	is_in_fight = false
+	velocity = Vector2.ZERO
+	
+	# Reproducimos la animación de muerte
+	animated_sprite_2d.play("dead")
+	dead.visible=true
+	var tween = create_tween()
+	
+	# Le decimos que anime la propiedad "position"
+	# Destino: su position actual + Vector2(0, -150) (150 píxeles hacia arriba)
+	# Duración: 1.5 segundos
+	tween.tween_property(self, "position", position + Vector2(0, -150), 1.5)
+	
+	await tween.finished
+	# Esperamos a que la animación termine
+	dead.visible=false
+	# Cambiamos a la siguiente escena (Asegúrate de colocar la ruta correcta de tu escena)
+	get_tree().change_scene_to_file("res://Scenes/menu.tscn")
 
 func set_climbing_state(active: bool) -> void:
 	if active:
@@ -433,3 +459,6 @@ func _setup_qte_state(opponent_node: CharacterBody2D, qte_type: String, contact_
 
 func start_game() -> void:
 	can_move = true
+	
+	
+	
