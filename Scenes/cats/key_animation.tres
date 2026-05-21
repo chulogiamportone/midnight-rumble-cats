@@ -1,0 +1,78 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://cv36kikpnxkkd"]
+
+[ext_resource type="Texture2D" uid="uid://bib72le7rqi3e" path="res://Assets/buttons/keyboard_arrows.png" id="1_3iei3"]
+[ext_resource type="Texture2D" uid="uid://ho2maa48ud63" path="res://Assets/buttons/keyboard_arrows_down.png" id="2_f00p2"]
+[ext_resource type="Texture2D" uid="uid://d3b4dgyfy6mkc" path="res://Assets/buttons/keyboard_arrows_horizontal.png" id="3_b0km0"]
+[ext_resource type="Texture2D" uid="uid://ctqp0hsjsrfim" path="res://Assets/buttons/keyboard_arrows_left.png" id="4_cicss"]
+[ext_resource type="Texture2D" uid="uid://6x5v1rjg5f15" path="res://Assets/buttons/keyboard_arrows_right.png" id="5_6pn3a"]
+[ext_resource type="Texture2D" uid="uid://lfgjkqbcbylg" path="res://Assets/buttons/keyboard_arrows_up.png" id="6_na62t"]
+[ext_resource type="Texture2D" uid="uid://bi3eahps8bvwh" path="res://Assets/buttons/keyboard_arrows_vertical.png" id="7_umhhj"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3iei3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_f00p2")
+}],
+"loop": true,
+"name": &"key_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3iei3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_b0km0")
+}],
+"loop": true,
+"name": &"key_horizontal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3iei3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_cicss")
+}],
+"loop": true,
+"name": &"key_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3iei3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6pn3a")
+}],
+"loop": true,
+"name": &"key_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3iei3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_na62t")
+}],
+"loop": true,
+"name": &"key_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3iei3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_umhhj")
+}],
+"loop": true,
+"name": &"key_vertical",
+"speed": 5.0
+}]

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="MidnightRumbleCats"
-run/main_scene="uid://cp2vhfdrfhcow"
+run/main_scene="uid://barstyoqjyl8d"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/resizable=false
+window/stretch/mode="canvas_items"
 
 [input]
 

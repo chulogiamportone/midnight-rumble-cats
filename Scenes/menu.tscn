@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://barstyoqjyl8d"]
 
-[ext_resource type="FontFile" uid="uid://cn1pduy0hqljw" path="res://Assets/fonts/beatstreet.ttf" id="1_1rerr"]
+[ext_resource type="Script" uid="uid://da2k8dganajv6" path="res://Scenes/menu.gd" id="1_jsrd8"]
+[ext_resource type="Texture2D" uid="uid://b3v170sjxowpj" path="res://Assets/Menu/Main menu.jpg" id="1_wwsa2"]
+[ext_resource type="Texture2D" uid="uid://018g3c5rqqco" path="res://Assets/Menu/play_normal.png" id="2_jsrd8"]
+[ext_resource type="Texture2D" uid="uid://0v6dd7pwbmeq" path="res://Assets/Menu/play_hover.png" id="3_wbdvm"]
+[ext_resource type="Texture2D" uid="uid://dcf61a2autopi" path="res://Assets/Menu/exit_normal.png" id="4_q3rjx"]
+[ext_resource type="Texture2D" uid="uid://djnhqusyadikc" path="res://Assets/Menu/exit_hover.png" id="5_6swd7"]
 
 [sub_resource type="Animation" id="Animation_xhh6f"]
 length = 0.001
@@ -94,26 +99,38 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_jsrd8")
 
-[node name="Title" type="Label" parent="." unique_id=320383495]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1774112327]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -771.0
-offset_top = -416.0
-offset_right = 629.0
-offset_bottom = -208.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(700, 104)
-theme_override_fonts/font = ExtResource("1_1rerr")
-theme_override_font_sizes/font_size = 160
-text = "MIDNIGHT RUMBLE CATS"
-horizontal_alignment = 1
+texture = ExtResource("1_wwsa2")
 
 [node name="AnimationMenu" type="AnimationPlayer" parent="." unique_id=1764339068]
-root_node = NodePath("../Title")
+root_node = NodePath("")
 libraries/ = SubResource("AnimationLibrary_158mb")
+
+[node name="Play" type="TextureButton" parent="." unique_id=1222268364]
+layout_mode = 0
+offset_left = 766.0
+offset_top = 783.0
+offset_right = 932.0
+offset_bottom = 852.0
+texture_normal = ExtResource("2_jsrd8")
+texture_hover = ExtResource("3_wbdvm")
+
+[node name="Exit" type="TextureButton" parent="." unique_id=1549318209]
+layout_mode = 0
+offset_left = 977.0
+offset_top = 783.0
+offset_right = 1143.0
+offset_bottom = 852.0
+texture_normal = ExtResource("4_q3rjx")
+texture_hover = ExtResource("5_6swd7")
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="button_up" from="Exit" to="." method="_on_exit_button_up"]
