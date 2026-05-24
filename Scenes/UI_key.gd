@@ -2,8 +2,8 @@ extends Control
 
 # Al subir un nivel ("../"), forzamos a que ambos scripts busquen desde el mismo padre.
 # Así, p1 siempre será p1 y p2 siempre será p2, sin importar quién ejecute el código.
-@onready var p1_key_sprite: AnimatedSprite2D = get_node("../UI_keyP1/AnimatedSprite2D")
-@onready var p2_key_sprite: AnimatedSprite2D = get_node("../UI_keyP2/AnimatedSprite2D")
+@onready var p1_key_sprite: AnimatedSprite2D = get_node("../../P1/UI_keyP1/AnimatedSprite2D")
+@onready var p2_key_sprite: AnimatedSprite2D = get_node("../../P2/UI_keyP2/AnimatedSprite2D")
 
 func _ready() -> void:
 	# Arrancan invisibles

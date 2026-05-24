@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cmpk2tbkk51f5"
+path="res://.godot/imported/Voicy_Mortal kombat punching sfx.mp3-a2769bf488ec7ddeb3e5057679aadfbe.mp3str"
+
+[deps]
+
+source_file="res://Audio/sfx/Voicy_Mortal kombat punching sfx.mp3"
+dest_files=["res://.godot/imported/Voicy_Mortal kombat punching sfx.mp3-a2769bf488ec7ddeb3e5057679aadfbe.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

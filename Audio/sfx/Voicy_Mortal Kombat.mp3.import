@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ksu2cckvhaf3"
+path="res://.godot/imported/Voicy_Mortal Kombat.mp3-553eddcf42a688237ca050850fede62a.mp3str"
+
+[deps]
+
+source_file="res://Audio/sfx/Voicy_Mortal Kombat.mp3"
+dest_files=["res://.godot/imported/Voicy_Mortal Kombat.mp3-553eddcf42a688237ca050850fede62a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

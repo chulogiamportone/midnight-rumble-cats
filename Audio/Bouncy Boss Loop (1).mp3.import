@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://1hus1eammvh6"
+path="res://.godot/imported/Bouncy Boss Loop (1).mp3-dbdee6b2e383cfbd040c476284c3e426.mp3str"
+
+[deps]
+
+source_file="res://Audio/Bouncy Boss Loop (1).mp3"
+dest_files=["res://.godot/imported/Bouncy Boss Loop (1).mp3-dbdee6b2e383cfbd040c476284c3e426.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

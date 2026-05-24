@@ -1,15 +1,18 @@
 extends CanvasLayer
 
-@onready var p1_label: Label = $VidasP1
-@onready var p2_label: Label = $VidasP2
-@onready var p1_key_sprite: AnimatedSprite2D = $UI_keyP1/AnimatedSprite2D
-@onready var p2_key_sprite: AnimatedSprite2D = $UI_keyP2/AnimatedSprite2D
+@onready var p1_label: Label = $P1/VidasP1
+@onready var p2_label: Label = $P2/VidasP2
+@onready var p1_key_sprite: AnimatedSprite2D = $P1/UI_keyP1/AnimatedSprite2D
+@onready var p2_key_sprite: AnimatedSprite2D = $P2/UI_keyP2/AnimatedSprite2D
 @onready var countdown_label: Label = $InitialLabel
 
-@onready var p1_progress_bar: ProgressBar = $Bar1
-@onready var p2_progress_bar: ProgressBar =  $Bar2
-@onready var p_1: AnimatedSprite2D = $p1
-@onready var p_2: AnimatedSprite2D = $p2
+@onready var p1_progress_bar: ProgressBar = $P1/Bar1
+@onready var p2_progress_bar: ProgressBar =  $P2/Bar2
+@onready var p_1: AnimatedSprite2D = $P1/p1
+@onready var p_2: AnimatedSprite2D = $P2/p2
+
+@onready var mandarina: AnimationPlayer = $Mandarina/Mandarina
+
 
 func _ready() -> void:
 	# Las teclas arrancan invisibles, pero LAS BARRAS de vida ya no
@@ -48,6 +51,8 @@ func _on_lives_updated(player_id: int, current_lives: int) -> void:
 			p_1.play("3")
 		if current_lives==2:
 			p_1.play("2")
+			mandarina.play("Ml")
+			AudioManager.play_sfx("mandarina",0.0)
 		if current_lives==1:
 			p_1.play("1")
 	elif player_id == 2:
@@ -58,6 +63,8 @@ func _on_lives_updated(player_id: int, current_lives: int) -> void:
 			p_2.play("3")
 		if current_lives==2:
 			p_2.play("2")
+			mandarina.play("Mr")
+			AudioManager.play_sfx("mandarina",0.0)
 		if current_lives==1:
 			p_2.play("1")
 
@@ -90,13 +97,14 @@ func _play_countdown() -> void:
 	countdown_label.visible = true
 	
 	countdown_label.text = "3"
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(0.6).timeout
 	
 	countdown_label.text = "2"
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(0.6).timeout
 	
 	countdown_label.text = "1"
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(0.6).timeout
+	AudioManager.play_sfx("fight",-10.0)
 	countdown_label.add_theme_font_size_override("font_size", 120)
 	countdown_label.add_theme_color_override("font_color",Color(1.0, 0.0, 0.0, 1.0))
 	countdown_label.text = "Fight!"

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b7nl05ipw60wc"
+path="res://.godot/imported/Voicy_ Finish Him Sound Effect .mp3-dfde943f2130fc50dc22b964bd8d1412.mp3str"
+
+[deps]
+
+source_file="res://Audio/sfx/Voicy_ Finish Him Sound Effect .mp3"
+dest_files=["res://.godot/imported/Voicy_ Finish Him Sound Effect .mp3-dfde943f2130fc50dc22b964bd8d1412.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

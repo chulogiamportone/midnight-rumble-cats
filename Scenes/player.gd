@@ -5,7 +5,11 @@ signal health_updated(player_id: int, current_health: int, max_health: int) # <-
 signal qte_started(player_id: int, action_name: String)
 signal qte_ended()
 signal lives_updated(player_id: int, current_lives: int) 
+signal fatality_triggered(loser_id: int) # <--- NUEVA SEÑAL PARA LA FATALITY
+
 @onready var dead: Sprite2D = $"Dead"
+@onready var fight_effect_sprite: AnimatedSprite2D = $"../../FightEffectSprite" # Ajustá si cambió la ruta
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 @export var player_id: int = 1
 
@@ -14,7 +18,7 @@ signal lives_updated(player_id: int, current_lives: int)
 @export var jump_velocity: float = -500.0
 @export var dash_speed: float = 800.0
 @export var dash_duration: float = 0.2
-@export var max_lives: int = 7 
+@export var max_lives: int = 3
 @export var max_health: int = 20 # <--- CAMBIADO A 20 (Para que sean los 20 golpes)
 @export var max_slip_speed: float = 80.0
 
@@ -55,8 +59,7 @@ var can_mash: bool = false
 
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-@onready var fight_effect_sprite: AnimatedSprite2D = $"../../FightEffectSprite" # Ajustá si cambió la ruta
-@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+var  is_dead:=false
 
 func _ready() -> void:
 	current_lives = max_lives
@@ -73,6 +76,8 @@ func _setup_inputs() -> void:
 	input_attack = "attack_p" + str(player_id)
 
 func _physics_process(delta: float) -> void:
+	if is_dead:
+		return
 	if is_in_fight:
 		_handle_qte_fight()
 		
@@ -104,6 +109,8 @@ func _physics_process(delta: float) -> void:
 	_update_animations()
 
 func _update_animations() -> void:
+	if is_dead:
+		return
 	animated_sprite_2d.flip_h = false 
 
 	if is_in_fight:
@@ -131,6 +138,7 @@ func _update_animations() -> void:
 		return
 
 	if is_on_floor():
+		
 		if velocity.x == 0:
 			if not fight_cooldown: 
 				animated_sprite_2d.play("idle_" + last_idle_dir)
@@ -245,46 +253,37 @@ func _perform_attack() -> void:
 	await get_tree().create_timer(0.3).timeout
 	is_attacking = false
 
-# --- NUEVA LÓGICA DE DAÑO EN QTE ---
+# --- LÓGICA DE DAÑO EN QTE ---
 func _handle_qte_fight() -> void:
 	if not can_mash:
 		return
 		
 	for action in qte_target_actions:
-		# Si apretamos la tecla correcta
 		if Input.is_action_just_pressed(action):
-			# Le pegamos al oponente! (Le restamos vida)
 			if is_instance_valid(current_opponent):
 				current_opponent.receive_qte_hit()
 			break 
 
-# Esta función es llamada por el otro jugador cuando te acierta un golpe en el QTE
 func receive_qte_hit() -> void:
 	current_health -= 1
 	emit_signal("health_updated", player_id, current_health, max_health)
 	
-	# Si mi vida llega a 0, perdí la pelea
 	if current_health <= 0:
-		# Le avisamos al oponente que ganó
 		if is_instance_valid(current_opponent):
 			current_opponent.win_fight()
 			
-		# Perdemos la vida
 		lose_life(1)
 		
-		# Si me quedan vidas, me regenero y termino la pelea como perdedor
 		if current_lives > 0:
-			current_health = max_health # Rellenamos la barra
+			current_health = max_health 
 			emit_signal("health_updated", player_id, current_health, max_health)
 			_end_fight_sequence(false)
 		else:
-			# --- SI MORÍ DEFINITIVAMENTE ---
 			emit_signal("qte_ended")
 			if fight_effect_sprite and fight_effect_sprite.visible:
 				fight_effect_sprite.visible = false
 				fight_effect_sprite.stop()
 				
-			# Aseguramos que el jugador y el oponente vuelvan a ser visibles
 			self.visible = true
 			if is_instance_valid(current_opponent):
 				current_opponent.visible = true
@@ -314,7 +313,32 @@ func _end_fight_sequence(is_winner: bool) -> void:
 		fight_cooldown = false
 		animated_sprite_2d.play("idle_" + last_idle_dir)
 	else:
-		_respawn_and_grant_immunity()
+		# --- LLAMAMOS A LA MUERTE TEMPORAL EN LUGAR DEL RESPAWN DIRECTO ---
+		_temporary_death()
+
+# --- NUEVA FUNCIÓN: MUERTE TEMPORAL AL PERDER UNA VIDA ---
+func _temporary_death() -> void:
+	can_move = false
+	velocity = Vector2.ZERO
+	is_dead = true # Usamos tu variable is_dead
+	
+	animated_sprite_2d.stop()
+	animated_sprite_2d.play("dead")
+	
+	if dead:
+		dead.visible = true
+		
+	var tween = create_tween()
+	tween.tween_property(self, "position", position + Vector2(0, -150), 1.5)
+	
+	await tween.finished
+	
+	if dead:
+		dead.visible = false
+		
+	is_dead = false # Revivimos al jugador
+	can_move = true
+	_respawn_and_grant_immunity()
 
 func _respawn_and_grant_immunity() -> void:
 	var markers = get_tree().get_nodes_in_group("respawn")
@@ -345,30 +369,31 @@ func lose_life(amount: int) -> void:
 	print("Jugador ", player_id, " pierde una vida. Vidas restantes: ", current_lives)
 	
 	if current_lives <= 0:
-		die()
+		emit_signal("fatality_triggered", player_id)
 
 func die() -> void:
 	print("Jugador ", player_id, " eliminado por completo")
 	
-	# Desactivamos el movimiento y marcamos que ya no está en pelea
 	can_move = false
 	is_in_fight = false
 	velocity = Vector2.ZERO
+	is_dead = true
 	
-	# Reproducimos la animación de muerte
+	animated_sprite_2d.stop()
 	animated_sprite_2d.play("dead")
-	dead.visible=true
-	var tween = create_tween()
 	
-	# Le decimos que anime la propiedad "position"
-	# Destino: su position actual + Vector2(0, -150) (150 píxeles hacia arriba)
-	# Duración: 1.5 segundos
+	if dead:
+		dead.visible = true
+		
+	var tween = create_tween()
 	tween.tween_property(self, "position", position + Vector2(0, -150), 1.5)
 	
 	await tween.finished
-	# Esperamos a que la animación termine
-	dead.visible=false
-	# Cambiamos a la siguiente escena (Asegúrate de colocar la ruta correcta de tu escena)
+	
+	if dead:
+		dead.visible = false
+	reset_all_values()
+	
 	get_tree().change_scene_to_file("res://Scenes/menu.tscn")
 
 func set_climbing_state(active: bool) -> void:
@@ -459,6 +484,38 @@ func _setup_qte_state(opponent_node: CharacterBody2D, qte_type: String, contact_
 
 func start_game() -> void:
 	can_move = true
+
+func reset_all_values() -> void:
+	print("Reseteando valores del Jugador ", player_id)
+	# Devolvemos estadísticas a su estado inicial
+	current_lives = max_lives
+	current_health = max_health
 	
+	# Apagamos todas las banderas de estado y movimiento
+	is_dead = false
+	can_move = false
+	is_immune = false
+	is_dashing = false
+	is_attacking = false
+	is_climbing = false
+	is_jumping_in_area = false
+	is_in_soft_gravity = false
 	
+	# Apagamos estados de pelea
+	is_in_fight = false
+	fight_cooldown = false
+	can_mash = false
+	current_opponent = null
+	qte_target_actions.clear()
 	
+	# Reset físico y visual
+	velocity = Vector2.ZERO
+	climbable_areas_count = 0
+	soft_gravity_areas_count = 0
+	animated_sprite_2d.modulate.a = 1.0 # Por si quedó transparente por la inmunidad
+	
+	if dead:
+		dead.visible = false
+		
+	# NOTA: Si en el futuro usas un script global (ej: Global.score = 0), 
+	# también deberías reiniciarlo dentro de esta función.

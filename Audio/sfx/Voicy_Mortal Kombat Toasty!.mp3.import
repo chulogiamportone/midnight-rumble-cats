@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ddfr5f70m4fpj"
+path="res://.godot/imported/Voicy_Mortal Kombat Toasty!.mp3-99197c339f6377ec28094b5b53c3014c.mp3str"
+
+[deps]
+
+source_file="res://Audio/sfx/Voicy_Mortal Kombat Toasty!.mp3"
+dest_files=["res://.godot/imported/Voicy_Mortal Kombat Toasty!.mp3-99197c339f6377ec28094b5b53c3014c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

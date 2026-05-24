@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://0v6dd7pwbmeq" path="res://Assets/Menu/play_hover.png" id="3_wbdvm"]
 [ext_resource type="Texture2D" uid="uid://dcf61a2autopi" path="res://Assets/Menu/exit_normal.png" id="4_q3rjx"]
 [ext_resource type="Texture2D" uid="uid://djnhqusyadikc" path="res://Assets/Menu/exit_hover.png" id="5_6swd7"]
+[ext_resource type="AudioStream" uid="uid://cd2fou4w5u2sp" path="res://Audio/Ending (2).mp3" id="7_wbdvm"]
 
 [sub_resource type="Animation" id="Animation_xhh6f"]
 length = 0.001
@@ -131,6 +132,11 @@ offset_right = 1143.0
 offset_bottom = 852.0
 texture_normal = ExtResource("4_q3rjx")
 texture_hover = ExtResource("5_6swd7")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1444663713]
+stream = ExtResource("7_wbdvm")
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="button_up" from="Exit" to="." method="_on_exit_button_up"]

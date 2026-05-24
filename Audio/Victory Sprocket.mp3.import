@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cmnrkfgp8gdgo"
+path="res://.godot/imported/Victory Sprocket.mp3-adb52f3cb2503c2c3040aa275e64b3f0.mp3str"
+
+[deps]
+
+source_file="res://Audio/Victory Sprocket.mp3"
+dest_files=["res://.godot/imported/Victory Sprocket.mp3-adb52f3cb2503c2c3040aa275e64b3f0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
