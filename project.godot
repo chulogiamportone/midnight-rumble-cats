@@ -13,6 +13,7 @@ config_version=5
 config/name="MidnightRumbleCats"
 run/main_scene="uid://barstyoqjyl8d"
 config/features=PackedStringArray("4.6", "Mobile")
+boot_splash/image="uid://u1qgqcjvw0ym"
 config/icon="res://icon.svg"
 
 [autoload]

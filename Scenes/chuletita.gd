@@ -21,6 +21,7 @@ var winner_node: CharacterBody2D
 
 @onready var p_1: Node2D = $UI/P1
 @onready var p_2: Node2D = $UI/P2
+@onready var objets: Node2D = $Objets
 
 
 
@@ -47,6 +48,7 @@ func _on_fatality_triggered(loser_id: int) -> void:
 		winner_id = 1
 
 	# --- BLOQUEO ABSOLUTO DEL JUGADOR PERDEDOR ---
+	
 	loser_node.can_move = false
 	loser_node.is_in_fight = false
 	loser_node.can_mash = false
@@ -60,6 +62,7 @@ func _on_fatality_triggered(loser_id: int) -> void:
 	winner_node.can_mash = false
 	winner_node.velocity = Vector2.ZERO
 
+	
 	# Activamos el zoom de la cámara
 	if is_instance_valid(camera):
 		camera.is_in_fatality = true
@@ -69,6 +72,7 @@ func _on_fatality_triggered(loser_id: int) -> void:
 		title_label.visible = true
 		p_1.visible=false
 		p_2.visible=false
+		objets.visible=false
 	if icons_container: 
 		icons_container.visible = true
 	

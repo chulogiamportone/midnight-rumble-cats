@@ -15,12 +15,16 @@ signal fatality_triggered(loser_id: int) # <--- NUEVA SEÑAL PARA LA FATALITY
 
 @export var speed: float = 300.0
 @export var climb_speed: float = 200.0
-@export var jump_velocity: float = -500.0
+@export var jump_velocity: float = -600.0
 @export var dash_speed: float = 800.0
 @export var dash_duration: float = 0.2
-@export var max_lives: int = 3
+@export var max_lives: int = 7
 @export var max_health: int = 20 # <--- CAMBIADO A 20 (Para que sean los 20 golpes)
 @export var max_slip_speed: float = 80.0
+
+@onready var ui_p1: AnimatedSprite2D = $"../../UI/P1/p1"
+@onready var ui_p2: AnimatedSprite2D = $"../../UI/P2/p2"
+
 
 var can_move: bool = false 
 var is_immune: bool = false 
@@ -60,11 +64,17 @@ var can_mash: bool = false
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var  is_dead:=false
+# Podés cambiar los nombres exactos según cómo los hayas puesto en el AudioManager
+var hit_sounds: Array[String] = ["a1", "a2", "a3", "a4", "a5", "a6", "a7"]
+var current_hit_index: int = 0
+@onready var objets: Node2D = $"../../Objets"
+
 
 func _ready() -> void:
 	current_lives = max_lives
-	current_health = max_health # Llenamos la vida al inicio
+	current_health = max_health
 	_setup_inputs()
+	_load_selected_character()
 
 func _setup_inputs() -> void:
 	input_left = "move_left_p" + str(player_id)
@@ -253,7 +263,6 @@ func _perform_attack() -> void:
 	await get_tree().create_timer(0.3).timeout
 	is_attacking = false
 
-# --- LÓGICA DE DAÑO EN QTE ---
 func _handle_qte_fight() -> void:
 	if not can_mash:
 		return
@@ -261,11 +270,19 @@ func _handle_qte_fight() -> void:
 	for action in qte_target_actions:
 		if Input.is_action_just_pressed(action):
 			if is_instance_valid(current_opponent):
-				current_opponent.receive_qte_hit()
-			break 
+				# 1. Reproducimos el sonido actual desde el array
+				AudioManager.play_sfx(hit_sounds[current_hit_index])
+				
+				# Avanzamos al siguiente sonido, y si llegamos al final, vuelve a 0
+				current_hit_index = (current_hit_index + 1) % hit_sounds.size()
+				
+				# 2. Aplicamos el daño original
+				var damage_to_deal = get_meta("qte_damage", 1)
+				current_opponent.receive_qte_hit(damage_to_deal)
+			break
 
-func receive_qte_hit() -> void:
-	current_health -= 1
+func receive_qte_hit(damage: int = 1) -> void:
+	current_health -= damage
 	emit_signal("health_updated", player_id, current_health, max_health)
 	
 	if current_health <= 0:
@@ -513,9 +530,34 @@ func reset_all_values() -> void:
 	climbable_areas_count = 0
 	soft_gravity_areas_count = 0
 	animated_sprite_2d.modulate.a = 1.0 # Por si quedó transparente por la inmunidad
-	
+	objets.visible=true
 	if dead:
 		dead.visible = false
 		
 	# NOTA: Si en el futuro usas un script global (ej: Global.score = 0), 
 	# también deberías reiniciarlo dentro de esta función.
+func _load_selected_character() -> void:
+	var character_name: String = ""
+	var ui:AnimatedSprite2D=null
+	if player_id == 1:
+		character_name = AudioManager.p1_character
+		ui=ui_p1
+	else:
+		character_name = AudioManager.p2_character
+		ui=ui_p2
+				
+	# Ajustar las rutas según tu estructura de carpetas
+	var frames_path = "res://Scenes/cats/" + character_name + ".tres"
+	var frames_path_ui = "res://Scenes/cats/ui_" + character_name + ".tres"
+	var dead_path = "res://Assets/game/" + character_name + ".png"
+	
+	if ResourceLoader.exists(frames_path):
+		animated_sprite_2d.sprite_frames = load(frames_path)
+		ui.sprite_frames=load(frames_path_ui)
+	else:
+		push_error("Recurso no encontrado: " + frames_path)
+		
+	if ResourceLoader.exists(dead_path):
+		dead.texture = load(dead_path)
+	else:
+		push_error("Recurso no encontrado: " + dead_path)

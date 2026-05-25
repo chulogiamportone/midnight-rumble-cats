@@ -3,10 +3,25 @@ extends Node
 var music_player: AudioStreamPlayer 
 var sfx_container: Node 
 
+var p1_character: String = ""
+var p2_character: String = ""
+
+
 var sounds: Dictionary = {
 	"fight": preload("res://Audio/sfx/fight.mp3"),
 	"mandarina": preload("uid://ddfr5f70m4fpj"),
-	"fatality":preload("uid://b7nl05ipw60wc")
+	"fatality":preload("uid://b7nl05ipw60wc"),
+	"food":preload("uid://bmb7b53200igc"),
+	"meow":preload("uid://c5tgheo8np2gx"),
+	"rocks":preload("uid://cvj1jd8xp15os"),
+	"a1":preload("uid://cjwsaa8pfgti5"),
+	"a2":preload("uid://bqii3s32jdahv"),
+	"a3":preload("uid://d2xa7ibjisc6l"),
+	"a4": preload("uid://cof67ppxtkfjl"),
+	"a5":preload("uid://cmputroegwxpv") ,
+	"a6":preload("uid://eregytc1wydy"),
+	"a7":preload("uid://dqkhdjtgl4lmq")
+	
 }
 
 func _ready() -> void:

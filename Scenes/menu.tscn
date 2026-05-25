@@ -1,50 +1,73 @@
 [gd_scene format=3 uid="uid://barstyoqjyl8d"]
 
 [ext_resource type="Script" uid="uid://da2k8dganajv6" path="res://Scenes/menu.gd" id="1_jsrd8"]
-[ext_resource type="Texture2D" uid="uid://b3v170sjxowpj" path="res://Assets/Menu/Main menu.jpg" id="1_wwsa2"]
+[ext_resource type="Texture2D" uid="uid://bcg6vy6gcay1i" path="res://Assets/Menu/background_menu.png" id="2_1by5w"]
 [ext_resource type="Texture2D" uid="uid://018g3c5rqqco" path="res://Assets/Menu/play_normal.png" id="2_jsrd8"]
 [ext_resource type="Texture2D" uid="uid://0v6dd7pwbmeq" path="res://Assets/Menu/play_hover.png" id="3_wbdvm"]
 [ext_resource type="Texture2D" uid="uid://dcf61a2autopi" path="res://Assets/Menu/exit_normal.png" id="4_q3rjx"]
 [ext_resource type="Texture2D" uid="uid://djnhqusyadikc" path="res://Assets/Menu/exit_hover.png" id="5_6swd7"]
 [ext_resource type="AudioStream" uid="uid://cd2fou4w5u2sp" path="res://Audio/Ending (2).mp3" id="7_wbdvm"]
+[ext_resource type="Script" uid="uid://bkronx7xxl0cw" path="res://Scenes/transicion.gd" id="8_6swd7"]
+[ext_resource type="Texture2D" uid="uid://cbap6eqfu162h" path="res://Assets/Menu/logo.png" id="8_kmwmt"]
+[ext_resource type="Texture2D" uid="uid://ch4qwnhwcldo6" path="res://Assets/Menu/Gemini_Generated_Image_dmvq27dmvq27dmvq.png" id="9_7qvly"]
+[ext_resource type="SpriteFrames" uid="uid://cxib3g8ej76gj" path="res://Scenes/cats/fight.tres" id="9_rc6uw"]
+[ext_resource type="Texture2D" uid="uid://bicqgsxfrbcgo" path="res://Assets/Menu/azul.png" id="10_8ph6h"]
+[ext_resource type="SpriteFrames" uid="uid://bfw268c0espm0" path="res://Scenes/cats/blaqui.tres" id="10_g8i7c"]
+[ext_resource type="Texture2D" uid="uid://1v4cq5ggjffe" path="res://Assets/Menu/rojo.png" id="11_5ti5v"]
+[ext_resource type="SpriteFrames" uid="uid://bx1m84xpf7ghd" path="res://Scenes/cats/orange.tres" id="11_23t3j"]
+[ext_resource type="SpriteFrames" uid="uid://dsbq2g6l1cu3q" path="res://Scenes/cats/whity.tres" id="12_8ph6h"]
+[ext_resource type="FontFile" uid="uid://cn1pduy0hqljw" path="res://Assets/fonts/beatstreet.ttf" id="15_kmwmt"]
+[ext_resource type="Texture2D" uid="uid://bhkg0u3fpfvc8" path="res://Assets/buttons/keyboard_a_outline.png" id="18_747ic"]
+[ext_resource type="Texture2D" uid="uid://dqyrcr80cormd" path="res://Assets/buttons/keyboard_d_outline.png" id="19_x0760"]
+[ext_resource type="Texture2D" uid="uid://cyrtca1inyntm" path="res://Assets/buttons/keyboard_shift_outline.png" id="20_lvy56"]
+[ext_resource type="Texture2D" uid="uid://ds7a6wdxc1k2f" path="res://Assets/buttons/keyboard_space_outline.png" id="21_48g0d"]
+[ext_resource type="Texture2D" uid="uid://bkkggw1p3jexy" path="res://Assets/buttons/keyboard_s_outline.png" id="22_ygxe1"]
+[ext_resource type="Texture2D" uid="uid://bypmlgphx3j2j" path="res://Assets/buttons/keyboard_w_outline.png" id="23_0idt7"]
+[ext_resource type="Texture2D" uid="uid://os4teeb7jcci" path="res://Assets/buttons/keyboard_0_outline.png" id="24_ki2a1"]
+[ext_resource type="Texture2D" uid="uid://cx3ylsq8gme6r" path="res://Assets/buttons/keyboard_1_outline.png" id="25_flyo0"]
+[ext_resource type="Texture2D" uid="uid://bxfdgx8okhhun" path="res://Assets/buttons/keyboard_arrow_down_outline.png" id="26_4dr7d"]
+[ext_resource type="Texture2D" uid="uid://cd1qa00brtc36" path="res://Assets/buttons/keyboard_arrow_left_outline.png" id="27_8cy2d"]
+[ext_resource type="Texture2D" uid="uid://df6m61w1suoi1" path="res://Assets/buttons/keyboard_arrow_right_outline.png" id="28_lx18h"]
+[ext_resource type="Texture2D" uid="uid://dqeh4i74j5cah" path="res://Assets/buttons/keyboard_arrow_up_outline.png" id="29_mucp4"]
+[ext_resource type="Texture2D" uid="uid://ds23t65dsiehp" path="res://Assets/buttons/keyboard_escape_outline.png" id="30_v3l5l"]
 
 [sub_resource type="Animation" id="Animation_xhh6f"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(189, 124)]
+"values": [Vector2(1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale")
+tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:rotation")
+tracks/2/path = NodePath("Logo:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_cayip"]
@@ -87,10 +110,28 @@ tracks/2/keys = {
 "values": [0.0, 0.068297684]
 }
 
+[sub_resource type="Animation" id="Animation_dldpb"]
+resource_name = "logo"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Logo:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.7, 0.7), Vector2(0.8, 0.8)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_158mb"]
 _data = {
 &"RESET": SubResource("Animation_xhh6f"),
-&"Title": SubResource("Animation_cayip")
+&"Title": SubResource("Animation_cayip"),
+&"logo": SubResource("Animation_dldpb")
 }
 
 [node name="Menu" type="Control" unique_id=131877980]
@@ -109,11 +150,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_wwsa2")
+texture = ExtResource("2_1by5w")
+expand_mode = 1
 
 [node name="AnimationMenu" type="AnimationPlayer" parent="." unique_id=1764339068]
-root_node = NodePath("")
 libraries/ = SubResource("AnimationLibrary_158mb")
+autoplay = &"logo"
 
 [node name="Play" type="TextureButton" parent="." unique_id=1222268364]
 layout_mode = 0
@@ -137,6 +179,436 @@ texture_hover = ExtResource("5_6swd7")
 stream = ExtResource("7_wbdvm")
 autoplay = true
 parameters/looping = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=503172906]
+position = Vector2(960, 540)
+
+[node name="Logo" type="TextureRect" parent="." unique_id=1872777636]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -429.00012
+offset_top = -124.50018
+offset_right = 435.0
+offset_bottom = 286.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(432, 205.5)
+texture = ExtResource("8_kmwmt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=449505771]
+position = Vector2(977, 192)
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("9_rc6uw")
+animation = &"fight"
+autoplay = "fight"
+frame_progress = 0.44371176
+
+[node name="PlayerSelect" type="Control" parent="." unique_id=1410126303]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_6swd7")
+
+[node name="TextureRect" type="TextureRect" parent="PlayerSelect" unique_id=1618243154]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -386.0
+offset_top = -153.0
+offset_right = 430.0
+offset_bottom = 303.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_7qvly")
+
+[node name="CursorP2" type="TextureRect" parent="PlayerSelect/TextureRect" unique_id=1097417452]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 250.0
+texture = ExtResource("10_8ph6h")
+expand_mode = 1
+
+[node name="CursorP1" type="TextureRect" parent="PlayerSelect/TextureRect" unique_id=1878435132]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 250.0
+texture = ExtResource("11_5ti5v")
+expand_mode = 1
+
+[node name="jump2" type="Label" parent="PlayerSelect/TextureRect" unique_id=996520181]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -142.5
+offset_top = 74.0
+offset_right = 98.5
+offset_bottom = 178.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_fonts/font = ExtResource("15_kmwmt")
+theme_override_font_sizes/font_size = 70
+text = "SELECT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Keyboard0Outline2" type="Sprite2D" parent="PlayerSelect/TextureRect" unique_id=2080971531]
+position = Vector2(1518, 881)
+texture = ExtResource("24_ki2a1")
+
+[node name="KeyboardSpaceOutline2" type="Sprite2D" parent="PlayerSelect/TextureRect" unique_id=906081819]
+position = Vector2(1157, 878)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("21_48g0d")
+
+[node name="C1" type="Control" parent="PlayerSelect/TextureRect" unique_id=922679961]
+anchors_preset = 0
+offset_left = 773.0
+offset_top = 470.0
+offset_right = 1023.0
+offset_bottom = 720.0
+
+[node name="ColorRect" type="ColorRect" parent="PlayerSelect/TextureRect/C1" unique_id=1976300499]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -224.0
+offset_bottom = -224.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerSelect/TextureRect/C1" unique_id=269721497]
+position = Vector2(125, 127)
+sprite_frames = ExtResource("10_g8i7c")
+animation = &"select"
+frame_progress = 0.70204455
+
+[node name="Label1" type="Label" parent="PlayerSelect/TextureRect/C1" unique_id=936553878]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -98.0
+offset_top = -20.0
+offset_right = 98.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("15_kmwmt")
+theme_override_font_sizes/font_size = 100
+text = "BLAKI"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="C2" type="Control" parent="PlayerSelect/TextureRect" unique_id=1977327663]
+anchors_preset = 0
+offset_left = 1224.0
+offset_top = 473.0
+offset_right = 1474.0
+offset_bottom = 723.0
+
+[node name="ColorRect" type="ColorRect" parent="PlayerSelect/TextureRect/C2" unique_id=411336417]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -224.0
+offset_bottom = -224.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerSelect/TextureRect/C2" unique_id=237790772]
+position = Vector2(126, 126)
+sprite_frames = ExtResource("11_23t3j")
+animation = &"select"
+frame_progress = 0.81254286
+
+[node name="Label2" type="Label" parent="PlayerSelect/TextureRect/C2" unique_id=1801528457]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -98.0
+offset_top = -20.0
+offset_right = 98.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("15_kmwmt")
+theme_override_font_sizes/font_size = 100
+text = "MANDARINA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="C3" type="Control" parent="PlayerSelect/TextureRect" unique_id=844235697]
+anchors_preset = 0
+offset_left = 1660.0
+offset_top = 469.0
+offset_right = 1910.0
+offset_bottom = 719.0
+
+[node name="ColorRect" type="ColorRect" parent="PlayerSelect/TextureRect/C3" unique_id=646426639]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -224.0
+offset_bottom = -224.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerSelect/TextureRect/C3" unique_id=1069216657]
+position = Vector2(126, 124)
+sprite_frames = ExtResource("12_8ph6h")
+animation = &"select"
+frame_progress = 0.003496136
+
+[node name="Label3" type="Label" parent="PlayerSelect/TextureRect/C3" unique_id=97985199]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -98.0
+offset_top = -20.0
+offset_right = 98.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("15_kmwmt")
+theme_override_font_sizes/font_size = 100
+text = "WHITI"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Carga" type="Control" parent="." unique_id=2051478489]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Carga" unique_id=1449023001]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -371.0
+offset_top = -390.0
+offset_right = 268.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_1by5w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Carga" unique_id=220778057]
+position = Vector2(1692, 908)
+sprite_frames = ExtResource("11_23t3j")
+animation = &"cute"
+frame_progress = 0.3718946
+
+[node name="Title" type="Label" parent="Carga" unique_id=376262849]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -202.0
+offset_top = 246.0
+offset_right = 202.0
+offset_bottom = 402.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_fonts/font = ExtResource("15_kmwmt")
+theme_override_font_sizes/font_size = 120
+text = "CONTROLS"
+
+[node name="P1" type="Control" parent="Carga" unique_id=1301008962]
+anchors_preset = 0
+offset_left = -8.0
+offset_top = -115.0
+offset_right = 32.0
+offset_bottom = -75.0
+
+[node name="P1" type="Label" parent="Carga/P1" unique_id=624687531]
+layout_mode = 0
+offset_left = 692.0
+offset_top = 501.0
+offset_right = 933.0
+offset_bottom = 605.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_fonts/font = ExtResource("15_kmwmt")
+theme_override_font_sizes/font_size = 80
+text = "Player 1"
+
+[node name="jump" type="Label" parent="Carga/P1" unique_id=2078559943]
+layout_mode = 0
+offset_left = 980.0
+offset_top = 640.0
+offset_right = 1221.0
+offset_bottom = 744.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_fonts/font = ExtResource("15_kmwmt")
+theme_override_font_sizes/font_size = 50
+text = "JUMP"
+
+[node name="dash" type="Label" parent="Carga/P1" unique_id=1848198987]
+layout_mode = 0
+offset_left = 978.0
+offset_top = 735.0
+offset_right = 1219.0
+offset_bottom = 839.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_fonts/font = ExtResource("15_kmwmt")
+theme_override_font_sizes/font_size = 50
+text = "DASH"
+
+[node name="KeyboardAOutline" type="Sprite2D" parent="Carga/P1" unique_id=1145690258]
+position = Vector2(595, 757)
+texture = ExtResource("18_747ic")
+
+[node name="KeyboardDOutline" type="Sprite2D" parent="Carga/P1" unique_id=501704844]
+position = Vector2(801, 757)
+texture = ExtResource("19_x0760")
+
+[node name="KeyboardShiftOutline" type="Sprite2D" parent="Carga/P1" unique_id=1104149993]
+position = Vector2(909, 756)
+texture = ExtResource("20_lvy56")
+
+[node name="KeyboardSpaceOutline" type="Sprite2D" parent="Carga/P1" unique_id=1796187286]
+position = Vector2(911, 664)
+texture = ExtResource("21_48g0d")
+
+[node name="KeyboardSOutline" type="Sprite2D" parent="Carga/P1" unique_id=1678530515]
+position = Vector2(698, 757)
+texture = ExtResource("22_ygxe1")
+
+[node name="KeyboardWOutline" type="Sprite2D" parent="Carga/P1" unique_id=1899341689]
+position = Vector2(698, 654)
+texture = ExtResource("23_0idt7")
+
+[node name="P2" type="Control" parent="Carga" unique_id=1870578374]
+anchors_preset = 0
+offset_left = -8.0
+offset_top = -115.0
+offset_right = 32.0
+offset_bottom = -75.0
+
+[node name="P2" type="Label" parent="Carga/P2" unique_id=1147890537]
+layout_mode = 0
+offset_left = 1218.0
+offset_top = 493.0
+offset_right = 1473.0
+offset_bottom = 597.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_fonts/font = ExtResource("15_kmwmt")
+theme_override_font_sizes/font_size = 80
+text = "Player 2"
+
+[node name="Keyboard0Outline" type="Sprite2D" parent="Carga/P2" unique_id=327672271]
+position = Vector2(1448.7999, 757.7999)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("24_ki2a1")
+
+[node name="Keyboard1Outline" type="Sprite2D" parent="Carga/P2" unique_id=2113068654]
+position = Vector2(1447.7999, 665.8)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("25_flyo0")
+
+[node name="KeyboardArrowDownOutline" type="Sprite2D" parent="Carga/P2" unique_id=1618996247]
+position = Vector2(1232, 760)
+texture = ExtResource("26_4dr7d")
+
+[node name="KeyboardArrowLeftOutline" type="Sprite2D" parent="Carga/P2" unique_id=1294891118]
+position = Vector2(1130, 760)
+texture = ExtResource("27_8cy2d")
+
+[node name="KeyboardArrowRightOutline" type="Sprite2D" parent="Carga/P2" unique_id=809077973]
+position = Vector2(1334, 760)
+texture = ExtResource("28_lx18h")
+
+[node name="KeyboardArrowUpOutline" type="Sprite2D" parent="Carga/P2" unique_id=1436536151]
+position = Vector2(1232, 658)
+texture = ExtResource("29_mucp4")
+
+[node name="jump2" type="Label" parent="Carga/P2" unique_id=1726345360]
+layout_mode = 0
+offset_left = 1530.7999
+offset_top = 640.8
+offset_right = 1771.7999
+offset_bottom = 744.8
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_fonts/font = ExtResource("15_kmwmt")
+theme_override_font_sizes/font_size = 50
+text = "JUMP"
+
+[node name="dash2" type="Label" parent="Carga/P2" unique_id=1499230408]
+layout_mode = 0
+offset_left = 1527.7999
+offset_top = 735.8
+offset_right = 1768.7999
+offset_bottom = 839.8
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_fonts/font = ExtResource("15_kmwmt")
+theme_override_font_sizes/font_size = 50
+text = "DASH"
+
+[node name="KeyboardEscapeOutline" type="Sprite2D" parent="Carga" unique_id=1006151394]
+position = Vector2(222, 636)
+texture = ExtResource("30_v3l5l")
+
+[node name="Esc" type="Label" parent="Carga/KeyboardEscapeOutline" unique_id=1511002220]
+offset_left = 60.0
+offset_top = -46.0
+offset_right = 301.0
+offset_bottom = 58.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_fonts/font = ExtResource("15_kmwmt")
+theme_override_font_sizes/font_size = 50
+text = "PAUSE/EXIT"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="button_up" from="Exit" to="." method="_on_exit_button_up"]

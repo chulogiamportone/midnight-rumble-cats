@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://buml5ut3yldqt"]
+
+[ext_resource type="Script" uid="uid://bhj6k6dbigrmp" path="res://Scenes/fall.gd" id="1_a1d3u"]
+[ext_resource type="Texture2D" uid="uid://w63h7bcn753u" path="res://Assets/game/fall.png" id="2_n76s2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a1d3u"]
+radius = 7.0
+height = 66.0
+
+[node name="Fall" type="Area2D" unique_id=535484381]
+script = ExtResource("1_a1d3u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=554232950]
+position = Vector2(0, 1)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_a1d3u")
+
+[node name="ColorRect" type="TextureRect" parent="." unique_id=1855637886]
+offset_left = -201.0
+offset_top = -98.0
+offset_right = 200.53848
+offset_bottom = 163.0
+texture = ExtResource("2_n76s2")
+expand_mode = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

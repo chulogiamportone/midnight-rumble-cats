@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhjhl3ywj40tb"
-path="res://.godot/imported/dead_n.png-fe26f2c961cd43f3020c97851486d5a7.ctex"
+uid="uid://cx3ylsq8gme6r"
+path="res://.godot/imported/keyboard_1_outline.png-de7188851bf195bb38beefe57e0fa665.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/game/dead_n.png"
-dest_files=["res://.godot/imported/dead_n.png-fe26f2c961cd43f3020c97851486d5a7.ctex"]
+source_file="res://Assets/buttons/keyboard_1_outline.png"
+dest_files=["res://.godot/imported/keyboard_1_outline.png-de7188851bf195bb38beefe57e0fa665.ctex"]
 
 [params]
 
